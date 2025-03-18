@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Backend Project",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Arslanarsal/-Backend-project/issues"
   },
-  "homepage": "https://github.com/Arslanarsal/-Backend-project#readme"
+  "homepage": "https://github.com/Arslanarsal/-Backend-project#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3"
+  }
 }
