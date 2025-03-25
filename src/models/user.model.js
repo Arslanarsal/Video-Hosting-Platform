@@ -40,7 +40,7 @@ const userScheme = new Schema({
     },
     watchHistory: [
         {
-            type: mongoose.Schema.type.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "video"
         }
     ],
@@ -48,7 +48,7 @@ const userScheme = new Schema({
 
 userScheme.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password, 10);
+    this.password = await bcrypt.hash(this.password, 10);
     return next();
 })
 
@@ -57,7 +57,7 @@ userScheme.methods.isPasswordCorrect = async function (password) {
 }
 
 userScheme.methods.generateAccessToken = async function () {
-   return jwt.sign({
+    return jwt.sign({
         _id: this._id,
         email: this.email,
         username: this.username,
@@ -72,7 +72,7 @@ userScheme.methods.generateAccessToken = async function () {
 }
 
 userScheme.methods.generateRefreshToken = async function () {
-   return jwt.sign({
+    return jwt.sign({
         _id: this._id,
     },
         process.env.REFRESH_TOKEN_SECRET,

@@ -3,12 +3,9 @@ import { app } from "./app.js"
 import connect_DB from './db/DB_connect.js'
 dotenv.config({ path: "./.env" })
 
-// connect_DB();
 const PORT = process.env.PORT || 3000
 
-// dotenv.config({ path: "./.env" });
-
-(async () => {
+async function sss() {
     try {
         await connect_DB();
         app.on("ERROR", (error) => {
@@ -20,7 +17,22 @@ const PORT = process.env.PORT || 3000
     } catch (err) {
         console.log(`Error on Connecting!! ${err}`);
     }
-})();
+}
+sss();
+
+// (async () => {
+//     try {
+//         await connect_DB();
+//         app.on("ERROR", (error) => {
+//             console.log(error);
+//         })
+//         app.listen(PORT, () => {
+//             console.log(`Server is running on port : ${PORT}`);
+//         });
+//     } catch (err) {
+//         console.log(`Error on Connecting!! ${err}`);
+//     }
+// })();
 
 
 
