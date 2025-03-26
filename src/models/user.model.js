@@ -29,7 +29,7 @@ const userScheme = new Schema({
         require: true
     },
     coverImage: {
-        type: String
+        type: String  // Cloudinary url
     },
     password: {
         type: String,
@@ -57,7 +57,7 @@ userScheme.methods.isPasswordCorrect = async function (password) {
 }
 
 userScheme.methods.generateAccessToken = async function () {
-    return jwt.sign({
+    return await jwt.sign({
         _id: this._id,
         email: this.email,
         username: this.username,
@@ -72,7 +72,7 @@ userScheme.methods.generateAccessToken = async function () {
 }
 
 userScheme.methods.generateRefreshToken = async function () {
-    return jwt.sign({
+    return await jwt.sign({
         _id: this._id,
     },
         process.env.REFRESH_TOKEN_SECRET,
